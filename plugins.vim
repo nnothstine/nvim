@@ -1,5 +1,8 @@
 " Plug 'junegunn/vim-easy-align'
 
+command! PI PlugInstall
+command! PU PlugUpdate | PlugUpgrade
+
 " ==========================================================================
 " Vim debugging
 " ==========================================================================
@@ -14,10 +17,15 @@ Plug 'tpope/vim-surround'
 Plug 'pgdouyon/vim-evanesco'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'honza/vim-snippets'
 
 let g:fzf_command_prefix = 'FZF'
 Plug 'junegunn/fzf', { 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+
+Plug 'sbdchd/neoformat'
+
+Plug 'chrisbra/vim-zsh'
 
 " Theme
 Plug 'joshdick/onedark.vim'

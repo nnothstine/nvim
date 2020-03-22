@@ -8,14 +8,15 @@ nnoremap <silent><special> <Leader>evp
       \ :<C-U>execute 'edit ' . g:vdotdir . '/plugins.vim'<CR>
 
 nnoremap <silent><special> <Leader>em 
-      \ :<C-U>execute 'edit ' . g:vdotdir . '/core/mappings.vim'<CR>
+      \ :<C-U>execute 'edit ' . g:vdotdir . '/plugin/mappings.vim'<CR>
 
 " cd to current buffer path
 nnoremap <Leader>.. :<C-U>cd! %:h<CR>
 
-
 nnoremap <silent> <Leader>v :<C-U>vsplit<CR>
 nnoremap <silent> <Leader>h :<C-U>split<CR>
+
+nnoremap zz :bd<CR>
 
 " ----------------------------------------------------------------------------
 " Buffers

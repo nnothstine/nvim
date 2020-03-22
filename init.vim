@@ -10,10 +10,6 @@ let g:vdotdir= expand($VDOTDIR)
 if filereadable(expand("$VDOTDIR/plugins.vim"))
     call plug#begin("$VDOTDIR/vendor")
     execute 'source ' . g:vdotdir . '/plugins.vim'
-    " Custom code & extra configuration
-    runtime core/*.vim
-    " runtime lang/*.vim
-    runtime tools/*.vim
     call plug#end()
 endif
 
@@ -23,7 +19,6 @@ filetype plugin indent on
 set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8
-
 
 " ----------------------------------------------------------------------------
 " Display
