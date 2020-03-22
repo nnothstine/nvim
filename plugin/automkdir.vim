@@ -1,7 +1,7 @@
 function! s:AutoMkdir() abort
     let l:directory = expand("<afile>:p:h")
     if !isdirectory(l:directory)
-        call mkdir(l:directory, p)
+        call mkdir(l:directory, 'p')
     endif
 endfunction
 
