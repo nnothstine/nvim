@@ -1,0 +1,1 @@
+function! CurrentFileDir()  return expand(has('win32') : $HOME ? '%:p')  endfunction" command CopyFilePath let @

@@ -2,13 +2,28 @@
 " Settings vars
 " ============================================================================
 
+" unnecessary for nvim, possibly still useful for vim
+set nocompatible
 let mapleader="\<Space>"
 let g:vdotdir= expand($VDOTDIR)
 
 if filereadable(expand("$VDOTDIR/plugins.vim"))
-"   source "$VDOTDIR/plugins.vim"
+    call plug#begin("$VDOTDIR/vendor")
     execute 'source ' . g:vdotdir . '/plugins.vim'
+    " Custom code & extra configuration
+    runtime core/*.vim
+    " runtime lang/*.vim
+    runtime tools/*.vim
+    call plug#end()
 endif
+
+syntax on
+filetype plugin indent on
+
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8
+
 
 " ----------------------------------------------------------------------------
 " Display
@@ -30,11 +45,14 @@ set colorcolumn=+120
 set cursorline
 
 set synmaxcol=512
-set showtabline=2
+set signcolumn=yes
+" set showtabline=2
 set laststatus=2
 
 set noshowcmd
 set noshowmode
+
+set termguicolors
 
 " ----------------------------------------------------------------------------
 " Input
@@ -46,6 +64,12 @@ set mouse=a
 " Typing key combos
 set notimeout
 set ttimeout
+
+" Softtabs, 2 spaces
+set tabstop=2
+set shiftwidth=2
+set shiftround
+set expandtab
 
 " ----------------------------------------------------------------------------
 " Wild and file globbing stuff in command mode
@@ -75,6 +99,47 @@ set wildignore+=*.swp,.lock,.DS_Store,._*,tags.lock
 " ----------------------------------------------------------------------------
 
 set fileformats=mac,unix,dos
+
+" No backup - that's what git is for. FZF has issues with swap conflicts, so
+" disable swapfiles here.
+set noswapfile
+set nobackup
+set nowritebackup
+
+" don't create backups for these paths
+set backupskip+=/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*
+set backupskip+=/private/tmp/*"
+
+set undofile
+
+set autoread                 " Auto-update a file that's been edited externally
+set backspace=indent,eol,start
+set history=10000
+set hidden                   " Allow buffer switching without saving
+set lazyredraw               " Don't update screen while running macros
+
+" ----------------------------------------------------------------------------
+" Built-in completion
+" ----------------------------------------------------------------------------
+
+" Don't consider = symbol as part filename.
+set isfname-==
+
+set complete-=t                       " don't complete tags
+set completeopt-=longest              " ncm2 requirement
+set completeopt-=preview              " don't open scratch (e.g. echodoc)
+set completeopt+=noinsert             " ncm2 requirement
+set completeopt+=noselect             " ncm2 don't select first thing
+set completeopt+=menu,menuone         " show PUM, even for one thing
+
+set omnifunc=syntaxcomplete#Complete
+
+" ----------------------------------------------------------------------------
+" Message output on vim actions
+" ----------------------------------------------------------------------------
+
+set shortmess-=f
+set shortmess+=a " ilmnrxoOtWI
 
 " ----------------------------------------------------------------------------
 " Window splitting and buffers
@@ -119,12 +184,20 @@ set nosmartindent
 " C-style indenting.
 set nocindent
 
+" Copy to system keyboard
 set clipboard+=unnamedplus
-set history=1000
-
-filetype plugin indent on
 
 set shortmess+=I
+
+" ============================================================================
+" Formatting
+" ============================================================================
+
+" help 'fo-table' for details
+" Overridden by a bunch of filetypes
+set formatoptions=
+set formatoptions+=nr12
+set formatoptions-=alo
 
 " ============================================================================
 " Neovim-only mappings
@@ -134,6 +207,12 @@ nnoremap <special> <A-k>      <C-w>k
 nnoremap <special> <A-j>      <C-w>j
 nnoremap <special> <A-h>      <C-w>h
 nnoremap <special> <A-l>      <C-w>l
+
+" ============================================================================
+" Theme
+" ===========================================================================
+
+silent! colorscheme onedark
 
 " ============================================================================
 " Security
