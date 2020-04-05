@@ -4,10 +4,6 @@ let g:loaded_nan = 1
 let g:nan#vim_dir = fnamemodify(expand($MYVIMRC), ":p:h")
 let g:nan#plug_dir = '/vendor/'
 
-" fun nan#IsLoaded(plg)
-"   return stridx()
-" endf
-
 let s:loaded = []
 
 function! nan#Exists(name) abort
@@ -21,7 +17,11 @@ function! nan#PlugDir(name) abort
 endfunction
 
 function! nan#IsLoaded(name) abort
-  if index(s:loaded, a:name) -1
+  " if index(s:loaded, a:name) != -1
+  "   return 1
+  " endif
+  if match(&rtp, a:name) != -1
     return 1
   endif
 endfunction
+

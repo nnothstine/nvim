@@ -1,3 +1,5 @@
+if !nan#IsLoaded('neomake') | finish | endif
+
 let g:neomake_echo_current_error = 0 " neovim virtualtext is enough
 let g:neomake_highlight_columns = 0
 let g:neomake_open_list = 2

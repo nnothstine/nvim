@@ -1,4 +1,4 @@
-if !stridx(&rtp, g:plugs['fzf.vim'].dir) | finish | endif
+if !nan#IsLoaded('fzf.vim') | finish | endif
 
 nnoremap <silent><special> <A-f> :<C-U>FZFFiles<CR>
 nnoremap <silent><special> <A-b> :<C-U>FZFBuffers<CR>

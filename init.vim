@@ -47,7 +47,9 @@ set laststatus=2
 set noshowcmd
 set noshowmode
 
+if !$TERM_PROGRAM ==# "Apple_Terminal"
 set termguicolors
+endif
 
 " ----------------------------------------------------------------------------
 " Input
@@ -135,6 +137,7 @@ set omnifunc=syntaxcomplete#Complete
 
 set shortmess-=f
 set shortmess+=a " ilmnrxoOtWI
+set shortmess+=c " match x of y
 
 " ----------------------------------------------------------------------------
 " Window splitting and buffers

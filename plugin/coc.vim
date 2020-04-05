@@ -1,4 +1,4 @@
-if !stridx(&rtp, g:plugs["coc.nvim"].dir) | finish | endif
+if !nan#IsLoaded('coc.nvim') | finish | endif
 
 let g:coc_global_extensions = [ 'coc-snippets', 'coc-pairs' ]
 
