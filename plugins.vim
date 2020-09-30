@@ -36,7 +36,7 @@ Plug 'itchyny/lightline.vim'
 
 " Doesn't seem to work in after/plugin...
 let g:fzf_command_prefix = 'FZF'
-Plug 'junegunn/fzf', { 'do': './install --all' }
+Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
 
 Plug 'sbdchd/neoformat', PlugIf(has('nvim'))
@@ -64,7 +64,6 @@ Plug 'delphinus/vim-auto-cursorline'
 " --------------------------------------------------------------------------
 
 Plug 'Vimjas/vim-python-pep8-indent'
-
 Plug 'vim-python/python-syntax'
 
 " --------------------------------------------------------------------------

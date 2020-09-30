@@ -127,7 +127,7 @@ set completeopt-=longest              " ncm2 requirement
 set completeopt-=preview              " don't open scratch (e.g. echodoc)
 set completeopt+=noinsert             " ncm2 requirement
 set completeopt+=noselect             " ncm2 don't select first thing
-set completeopt+=menu,menuone         " show PUM, even for one thing
+" set completeopt+=menu,menuone         " show PUM, even for one thing
 
 set omnifunc=syntaxcomplete#Complete
 
@@ -215,6 +215,8 @@ silent! colorscheme onedark
 " ============================================================================
 " Security
 " ============================================================================
+
+let g:netrw_localrmdir='rm -r'
 
 " Disallow unsafe local vimrc commands
 " Leave down here since it trims local settings
