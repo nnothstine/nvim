@@ -13,8 +13,8 @@ if filereadable(expand("$VDOTDIR/plugins.vim"))
     call plug#end()
 endif
 
-syntax on
-filetype plugin indent on
+" syntax on
+" filetype plugin indent on
 
 set encoding=utf-8
 set fileencoding=utf-8
@@ -95,7 +95,7 @@ set wildignore+=*.swp,.lock,.DS_Store,._*,tags.lock
 " File saving
 " ----------------------------------------------------------------------------
 
-set fileformats=mac,unix,dos
+set fileformats=unix,dos
 
 " No backup - that's what git is for. FZF has issues with swap conflicts, so
 " disable swapfiles here.
@@ -167,20 +167,23 @@ set nowrap
 "      *
 "
 " Refer also to formatoptions+=o (copy comment indent to newline)
-set nocopyindent
+" set nocopyindent
 
 " Try not to change the indent structure on "<<" and ">>" commands. I.e. keep
 " block comments aligned with space if there is a space there.
-set nopreserveindent
+" set nopreserveindent
 
 " Smart detect when in braces and parens. Has annoying side effect that it
 " won't indent lines beginning with '#'. Relying on syntax indentexpr instead.
 " 'smartindent' in general is a piece of garbage, never turn it on.
-set nosmartindent
+" set nosmartindent
 
 " Global setting. I don't edit C-style code all the time so don't default to
 " C-style indenting.
-set nocindent
+" set nocindent
+
+set autoindent
+set cindent
 
 " Copy to system keyboard
 set clipboard+=unnamedplus
@@ -217,6 +220,71 @@ silent! colorscheme onedark
 " ============================================================================
 
 let g:netrw_localrmdir='rm -r'
+
+" Bumped '100 to '1000 to save more previous files
+" Bumped <50 to <100 to save more register lines
+" Bumped s10 to s100 for to allow up to 100kb of data per item
+set shada=!,'1000,<100,s100,h
+
+" The default blinking cursor leaves random artifacts in display like "q" in
+" old terminal emulators and some VTEs
+" https://github.com/neovim/neovim/issues?utf8=%E2%9C%93&q=is%3Aissue+cursor+shape+q
+set guicursor=
+augroup nannvim
+  autocmd!
+  autocmd OptionSet guicursor noautocmd set guicursor=
+augroup END
+
+let g:loaded_ruby_provider = 0
+let g:loaded_node_provider = 0
+
+" ============================================================================
+" Python setup
+" Skips if python is not installed in a pyenv virtualenv
+" ============================================================================
+
+function! s:FindExecutable(paths) abort
+  for l:path in a:paths
+    let l:executable = glob(expand(l:path))
+    if executable(l:executable) | return l:executable | endif
+  endfor
+  return ''
+endfunction
+
+" disable python 2
+let g:loaded_python_provider = 0
+
+" python 3
+let s:pyenv_py3 = s:FindExecutable([
+      \   '$PYENV_ROOT/versions/neovim3/bin/python',
+      \   '/usr/bin/python3',
+      \ ])
+if !empty(s:pyenv_py3)
+  let g:python3_host_prog = s:pyenv_py3
+else
+  let g:loaded_python3_provider = !exists('g:fvim_loaded') ? 2 : 0
+endif
+
+" This is a lua plugin. Neovim doesn't source lua/ in an autostart plugin
+" package by default (for now) so you have to manually packadd it.
+" packadd nvim-lspconfig
+" packadd completion-nvim
+" packadd diagnostic-nvim
+
+" lua require'nvim_lsp'.pyls.setup{on_attach=require'completion'.on_attach}
+
+lua <<EOF
+local nvim_lsp = require("nvim_lsp")
+local nvim_completion = require("completion")
+local nvim_diagnostic = require("diagnostic")
+
+nvim_lsp.pyls.setup{on_attach=require'completion'.on_attach}
+nvim_lsp.bashls.setup{
+  on_attach=require'completion'.on_attach;
+  filetypes = { "zsh", "sh" };
+}
+nvim_lsp.vimls.setup{on_attach=require'completion'.on_attach}
+EOF
 
 " Disallow unsafe local vimrc commands
 " Leave down here since it trims local settings

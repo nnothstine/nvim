@@ -18,6 +18,8 @@ nnoremap <silent> <Leader>h :<C-U>split<CR>
 
 nnoremap zz :bd<CR>
 
+inoremap <C-Return> <CR><CR><C-o>k<Tab>
+
 " ==========================================================================
 " Buffer manipulation
 " ==========================================================================
