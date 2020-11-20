@@ -13,9 +13,6 @@ if filereadable(expand("$VDOTDIR/plugins.vim"))
     call plug#end()
 endif
 
-syntax on
-filetype plugin indent on
-
 set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8
@@ -43,12 +40,13 @@ set synmaxcol=512
 set signcolumn=yes
 " set showtabline=2
 set laststatus=2
+set updatetime=750
 
 set noshowcmd
 set noshowmode
 
 if !$TERM_PROGRAM ==# "Apple_Terminal"
-set termguicolors
+  set termguicolors
 endif
 
 " ----------------------------------------------------------------------------
@@ -95,7 +93,7 @@ set wildignore+=*.swp,.lock,.DS_Store,._*,tags.lock
 " File saving
 " ----------------------------------------------------------------------------
 
-set fileformats=mac,unix,dos
+set fileformats=unix,dos
 
 " No backup - that's what git is for. FZF has issues with swap conflicts, so
 " disable swapfiles here.
@@ -167,20 +165,20 @@ set nowrap
 "      *
 "
 " Refer also to formatoptions+=o (copy comment indent to newline)
-set nocopyindent
+" set nocopyindent
 
 " Try not to change the indent structure on "<<" and ">>" commands. I.e. keep
 " block comments aligned with space if there is a space there.
-set nopreserveindent
+" set nopreserveindent
 
 " Smart detect when in braces and parens. Has annoying side effect that it
 " won't indent lines beginning with '#'. Relying on syntax indentexpr instead.
 " 'smartindent' in general is a piece of garbage, never turn it on.
-set nosmartindent
+" set nosmartindent
 
 " Global setting. I don't edit C-style code all the time so don't default to
 " C-style indenting.
-set nocindent
+" set nocindent
 
 " Copy to system keyboard
 set clipboard+=unnamedplus
@@ -196,6 +194,12 @@ set shortmess+=I
 set formatoptions=
 set formatoptions+=nr12
 set formatoptions-=alo
+
+" ==========================================================================
+" Sessions
+" ==========================================================================
+
+let g:sessions_dir = "$VDOTDIR/sessions"
 
 " ============================================================================
 " Neovim-only mappings

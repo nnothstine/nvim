@@ -18,15 +18,29 @@ Plug 'tweekmonster/startuptime.vim', { 'on': [ 'StartupTime' ] }
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-endwise'
+" Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'pgdouyon/vim-evanesco'
 Plug 'junegunn/vim-easy-align'
 
+let g:coc_global_extensions = [
+    \ 'coc-diagnostic',
+    \ 'coc-git',
+    \ 'coc-solargraph',
+    \ 'coc-sh',
+    \ 'coc-pairs',
+    \ 'coc-vimlsp',
+    \]
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" Plug 'tmsvg/pear-tree'
+" conflicts with vim-endwise
+Plug 'neoclide/coc-pairs'
 Plug 'honza/vim-snippets'
+
+Plug 'machakann/vim-highlightedyank'
 
 " --------------------------------------------------------------------------
 " Modeline
@@ -58,6 +72,8 @@ Plug 'Shougo/echodoc.vim'
 
 " Cursorline
 Plug 'delphinus/vim-auto-cursorline'
+" Plug 'jiangmiao/auto-pairs'
+" Plug 'Krasjet/auto.pairs'
 
 " --------------------------------------------------------------------------
 " Language: Python
@@ -70,6 +86,7 @@ Plug 'vim-python/python-syntax'
 " Language: zsh
 " --------------------------------------------------------------------------
 
+Plug 'chrisbra/vim-sh-indent'
 Plug 'chrisbra/vim-zsh'
 
 " ==========================================================================
@@ -77,3 +94,7 @@ Plug 'chrisbra/vim-zsh'
 " ==========================================================================
 
 Plug 'joshdick/onedark.vim'
+
+Plug 'blueyed/vim-qf_resize'
+
+Plug 'romainl/vim-qf'
