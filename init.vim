@@ -13,6 +13,11 @@ if filereadable(expand("$VDOTDIR/plugins.vim"))
     call plug#end()
 endif
 
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+endif
+
 set encoding=utf-8
 set fileencoding=utf-8
 set fileencodings=utf-8
@@ -209,6 +214,48 @@ nnoremap <special> <A-k>      <C-w>k
 nnoremap <special> <A-j>      <C-w>j
 nnoremap <special> <A-h>      <C-w>h
 nnoremap <special> <A-l>      <C-w>l
+
+" ==========================================================================
+" Host providers
+" ==========================================================================
+
+function s:FindExecutable(paths) abort
+  for l:path in a:paths
+    let l:executable = glob(expand(l:path))
+    if executable(l:executable) | return l:executable | endif
+  endfor
+  return ''
+endfunction
+
+let g:loaded_python_provider = 0
+let s:pyenv_py3 = s:FindExecutable([
+  \ '$PYENV_ROOT/versions/neovim3/bin/python',
+  \ '/usr/bin/python3'
+  \ ])
+let g:python3_host_prog = s:pyenv_py3
+
+" ==========================================================================
+" Autocommands
+" ==========================================================================
+
+augroup nanwinresize
+  autocmd!
+  autocmd VimResized * wincmd =
+augroup END
+
+augroup nancomments
+  autocmd!
+  autocmd FileType * set formatoptions-=o
+augroup END
+
+augroup nanhugefile
+  autocmd BufReadPre *
+        \   if getfsize(expand("%")) > 10000000
+        \|    syntax off
+        \|    let b:nan_hugefile = 1
+        \|  endif
+  autocmd BufReadPre *.min.* syntax off
+augroup END
 
 " ============================================================================
 " Theme

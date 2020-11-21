@@ -10,4 +10,4 @@ augroup filetypedetect
   autocmd! BufNewFile,BufRead *.plist setfiletype xml
 augroup END
 
-autocmd! FileType * setlocal formatoptions-=o
+" autocmd! FileType * set formatoptions-=o

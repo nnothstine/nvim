@@ -49,4 +49,5 @@ nmap <silent> <Leader>t <Plug>(coc-type-definition)
 " conflicts with vim-endwise
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <CR> "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <Plug>CustomCocCR "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+imap <silent> <CR> <Plug>CustomCocCR<Plug>DiscretionaryEnd

@@ -18,7 +18,8 @@ Plug 'tweekmonster/startuptime.vim', { 'on': [ 'StartupTime' ] }
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-unimpaired'
-" Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-endwise'
+let g:endwise_no_mappings = 1
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
@@ -31,6 +32,7 @@ let g:coc_global_extensions = [
     \ 'coc-solargraph',
     \ 'coc-sh',
     \ 'coc-pairs',
+    \ 'coc-snippets',
     \ 'coc-vimlsp',
     \]
 Plug 'neoclide/coc.nvim', {'branch': 'release'}

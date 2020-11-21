@@ -19,6 +19,9 @@ nnoremap <silent> <Leader>h :<C-U>split<CR>
 " new tab
 nnoremap <silent> <Leader>t :<C-U>tabnew<CR>
 
+" cd to current buffer
+nnoremap <silent> <Leader>cd :<C-U>cd %:p:h<CR>
+
 nnoremap zz :bd<CR>
 
 " ==========================================================================
@@ -45,6 +48,12 @@ nnoremap [t :tabp<cr>
 nnoremap <Leader>w :<C-U>w!<CR>
 nnoremap <Leader>wq :<C-U>wq!<CR>
 nnoremap <Leader>q :<C-U>q!<CR>
+
+" --------------------------------------------------------------------------
+" Directories
+" --------------------------------------------------------------------------
+
+nnoremap <silent> <Leader>t :<C-U>tabnew<CR>
 
 " ==========================================================================
 " PUM
